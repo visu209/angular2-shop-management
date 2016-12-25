@@ -7,6 +7,8 @@ var customers = require('./routes/customers');
 
 var app = express();
 
+var port = 3000;
+
 //View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -20,6 +22,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/', index);
-app.use('/customer', customers);
+app.use('/api', customers);
 
-app.listen();
+app.listen(port, function(){
+    console.log('Server started on port : ' + 3000);
+});
