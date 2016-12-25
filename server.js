@@ -7,8 +7,8 @@ var customers = require('./routes/customers');
 
 var app = express();
 
-//var port = 3000;
-var port = process.env.PORT || 8080;
+//access heroku port if available
+var port = process.env.PORT || 3000;
 
 //View Engine
 app.set('views', path.join(__dirname, 'views'));
