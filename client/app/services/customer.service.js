@@ -9,20 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var customer_service_1 = require('./services/customer.service');
-var AppComponent = (function () {
-    function AppComponent() {
+var http_1 = require('@angular/http');
+require('rxjs/add/operator/map');
+var CustomerService = (function () {
+    function CustomerService(http) {
+        this.http = http;
+        console.log("customer service initialized...");
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'my-app',
-            templateUrl: 'app.component.html',
-            providers: [customer_service_1.CustomerService]
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    CustomerService.prototype.getCustomers = function () {
+        return this.http.get('http://localhost:3000/api/customers')
+            .map(function (res) { return res.json(); });
+    };
+    CustomerService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [http_1.Http])
+    ], CustomerService);
+    return CustomerService;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.CustomerService = CustomerService;
+//# sourceMappingURL=customer.service.js.map

@@ -9,8 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var customer_service_1 = require('../services/customer.service');
 var CustomerComponent = (function () {
-    function CustomerComponent() {
+    function CustomerComponent(customerService) {
+        var _this = this;
+        this.customerService = customerService;
+        this.customerService.getCustomers()
+            .subscribe(function (customers) {
+            _this.customers = customers;
+        });
     }
     CustomerComponent = __decorate([
         core_1.Component({
@@ -18,7 +25,7 @@ var CustomerComponent = (function () {
             selector: 'customers',
             templateUrl: 'customer.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [customer_service_1.CustomerService])
     ], CustomerComponent);
     return CustomerComponent;
 }());
