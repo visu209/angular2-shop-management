@@ -17,7 +17,7 @@ var CustomerService = (function () {
         console.log("customer service initialized...");
     }
     CustomerService.prototype.getCustomers = function () {
-        return this.http.get('http://immense-island-54112.herokuapp.com/api/customers')
+        return this.http.get('http://localhost:3000/api/customers')
             .map(function (res) { return res.json(); });
     };
     CustomerService = __decorate([
