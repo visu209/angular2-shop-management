@@ -20,6 +20,12 @@ var CustomerService = (function () {
         return this.http.get('http://localhost:3000/api/customers')
             .map(function (res) { return res.json(); });
     };
+    CustomerService.prototype.addCustomer = function (newCustomer) {
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.post('http://localhost:3000/api/customer', JSON.stringify(newCustomer), { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
     CustomerService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

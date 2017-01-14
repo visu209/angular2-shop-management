@@ -26,7 +26,7 @@ router.get('/customer/:id', function (req, res, next) {
 //Save a customer
 router.post('/customer', function (req, res, next) {
     var customer = req.body;
-    if (!task.firstname) {
+    if (!customer.firstName) {
         res.status(400);
         res.json({
             "error": "Invalid First Name"

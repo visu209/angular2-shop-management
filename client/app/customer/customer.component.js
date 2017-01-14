@@ -19,6 +19,25 @@ var CustomerComponent = (function () {
             _this.customers = customers;
         });
     }
+    CustomerComponent.prototype.addCustomer = function (event) {
+        var _this = this;
+        event.preventDefault();
+        console.log(this.firstName);
+        var newCustomer = {
+            firstName: this.firstName,
+            lastName: this.lastName,
+            phone: this.phone,
+            address: this.address,
+            area: this.area,
+            city: this.city,
+            zip: this.zip,
+            email: this.email
+        };
+        this.customerService.addCustomer(newCustomer)
+            .subscribe(function (customer) {
+            _this.customers.push(customer);
+        });
+    };
     CustomerComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
