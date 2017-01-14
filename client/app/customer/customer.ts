@@ -1,4 +1,5 @@
 export class Customer {
+    public _id: string;
     public firstName: string;
     public lastName: string;
     public phone: number;

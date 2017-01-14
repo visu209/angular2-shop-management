@@ -22,7 +22,6 @@ var CustomerComponent = (function () {
     CustomerComponent.prototype.addCustomer = function (event) {
         var _this = this;
         event.preventDefault();
-        console.log(this.firstName);
         var newCustomer = {
             firstName: this.firstName,
             lastName: this.lastName,
@@ -36,6 +35,18 @@ var CustomerComponent = (function () {
         this.customerService.addCustomer(newCustomer)
             .subscribe(function (customer) {
             _this.customers.push(customer);
+        });
+    };
+    CustomerComponent.prototype.deleteCustomer = function (id) {
+        var customers = this.customers;
+        this.customerService.deleteCustomer(id).subscribe(function (data) {
+            if (data.n == 1) {
+                for (var i = 0; i < customers.length; i++) {
+                    if (customers[i]._id == id) {
+                        customers.splice(i, 1);
+                    }
+                }
+            }
         });
     };
     CustomerComponent = __decorate([

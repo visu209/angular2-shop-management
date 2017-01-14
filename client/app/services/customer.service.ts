@@ -9,14 +9,19 @@ export class CustomerService {
     }
 
     getCustomers() {
-        return this.http.get('http://localhost:3000/api/customers')
+        return this.http.get('/api/customers')
             .map(res => res.json());
     }
 
-    addCustomer(newCustomer: any){
+    addCustomer(newCustomer: any) {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:3000/api/customer', JSON.stringify(newCustomer), {headers: headers})
-            .map(res => res.json())
+        return this.http.post('/api/customer', JSON.stringify(newCustomer), { headers: headers })
+            .map(res => res.json());
+    }
+
+    deleteCustomer(id: any) {
+        return this.http.delete('/api/customer/' + id)
+            .map(res => res.json());
     }
 }

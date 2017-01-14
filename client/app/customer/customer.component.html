@@ -36,6 +36,7 @@
         <div class="col-md-3">{{customer.lastName}}</div>
         <div class="col-md-3">{{customer.city}}</div>
         <div class="col-md-2">{{customer.phone}}</div>
-        <div class="col-md-1"><input type="button" value="Delete" class="btn btn-danger"></div>
+        <div class="col-md-1"><input type="button" (click)="deleteCustomer(customer._id)" value="Delete" class="btn btn-danger"></div>
+        <br><br>
     </div>
 </div>

@@ -26,9 +26,8 @@ export class CustomerComponent {
             });
     }
 
-    addCustomer(event: any){
+    addCustomer(event: any) {
         event.preventDefault();
-        console.log(this.firstName);
 
         var newCustomer = {
             firstName: this.firstName,
@@ -45,6 +44,19 @@ export class CustomerComponent {
             .subscribe(customer => {
                 this.customers.push(customer);
             });
+    }
 
+    deleteCustomer(id: any) {
+        var customers = this.customers;
+
+        this.customerService.deleteCustomer(id).subscribe(data => {
+            if (data.n == 1) {
+                for (var i = 0; i < customers.length; i++) {
+                    if (customers[i]._id == id) {
+                        customers.splice(i, 1);
+                    }
+                }
+            }
+        });
     }
 }

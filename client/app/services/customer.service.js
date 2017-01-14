@@ -17,13 +17,17 @@ var CustomerService = (function () {
         console.log("customer service initialized...");
     }
     CustomerService.prototype.getCustomers = function () {
-        return this.http.get('http://localhost:3000/api/customers')
+        return this.http.get('/api/customers')
             .map(function (res) { return res.json(); });
     };
     CustomerService.prototype.addCustomer = function (newCustomer) {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:3000/api/customer', JSON.stringify(newCustomer), { headers: headers })
+        return this.http.post('/api/customer', JSON.stringify(newCustomer), { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    CustomerService.prototype.deleteCustomer = function (id) {
+        return this.http.delete('/api/customer/' + id)
             .map(function (res) { return res.json(); });
     };
     CustomerService = __decorate([
