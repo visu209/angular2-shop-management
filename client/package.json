@@ -55,5 +55,5 @@
     "@types/jasmine": "^2.5.36"
   },
   "repository": {},
-  "cacheDirectories": ["node_modules", "bower_components", "public/build" ]
+  "cacheDirectories": ["client/node_modules", "client/bower_components"]
 }
