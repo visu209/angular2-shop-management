@@ -10,15 +10,45 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var customer_service_1 = require('../services/customer.service');
+var forms_1 = require('@angular/forms');
 var CustomerComponent = (function () {
-    function CustomerComponent(customerService) {
+    function CustomerComponent(customerService, fb) {
         var _this = this;
         this.customerService = customerService;
+        this.fb = fb;
+        this.customerForm = this.fb.group({
+            firstName: ["", forms_1.Validators.required],
+            lastName: [""],
+            phone: [""],
+            address: [""],
+            city: [""],
+            area: [""],
+            zip: [""],
+            email: [""]
+        });
         this.customerService.getCustomers()
             .subscribe(function (customers) {
             _this.customers = customers;
         });
     }
+    CustomerComponent.prototype.addNewCustomer = function (_a) {
+        var _this = this;
+        var value = _a.value, valid = _a.valid;
+        console.log(value, valid);
+        var newCustomer = {
+            firstName: value.firstName,
+            lastName: value.lastName,
+            phone: value.phone,
+            address: value.address,
+            area: value.area,
+            city: value.city,
+            zip: value.zip,
+            email: value.email
+        };
+        this.customerService.addCustomer(newCustomer).subscribe(function (customer) {
+            _this.customers.push(customer);
+        });
+    };
     CustomerComponent.prototype.addCustomer = function (event) {
         var _this = this;
         event.preventDefault();
@@ -55,7 +85,7 @@ var CustomerComponent = (function () {
             selector: 'customers',
             templateUrl: 'customer.component.html'
         }), 
-        __metadata('design:paramtypes', [customer_service_1.CustomerService])
+        __metadata('design:paramtypes', [customer_service_1.CustomerService, forms_1.FormBuilder])
     ], CustomerComponent);
     return CustomerComponent;
 }());
