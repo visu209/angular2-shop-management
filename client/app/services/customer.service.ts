@@ -8,6 +8,12 @@ export class CustomerService {
         console.log("customer service initialized...");
     }
 
+    getLitrs() {
+        return this.http.get('/api/litrs')
+            .map(res => res.json());
+    }
+
+
     getCustomers() {
         return this.http.get('/api/customers')
             .map(res => res.json());

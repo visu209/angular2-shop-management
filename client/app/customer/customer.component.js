@@ -26,9 +26,9 @@ var CustomerComponent = (function () {
             zip: [""],
             email: [""]
         });
-        this.customerService.getCustomers()
-            .subscribe(function (customers) {
-            _this.customers = customers;
+        this.customerService.getLitrs()
+            .subscribe(function (litrs) {
+            _this.litrs = litrs;
         });
     }
     CustomerComponent.prototype.addNewCustomer = function (_a) {
@@ -46,24 +46,6 @@ var CustomerComponent = (function () {
             email: value.email
         };
         this.customerService.addCustomer(newCustomer).subscribe(function (customer) {
-            _this.customers.push(customer);
-        });
-    };
-    CustomerComponent.prototype.addCustomer = function (event) {
-        var _this = this;
-        event.preventDefault();
-        var newCustomer = {
-            firstName: this.firstName,
-            lastName: this.lastName,
-            phone: this.phone,
-            address: this.address,
-            area: this.area,
-            city: this.city,
-            zip: this.zip,
-            email: this.email
-        };
-        this.customerService.addCustomer(newCustomer)
-            .subscribe(function (customer) {
             _this.customers.push(customer);
         });
     };

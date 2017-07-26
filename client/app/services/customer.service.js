@@ -16,6 +16,10 @@ var CustomerService = (function () {
         this.http = http;
         console.log("customer service initialized...");
     }
+    CustomerService.prototype.getLitrs = function () {
+        return this.http.get('/api/litrs')
+            .map(function (res) { return res.json(); });
+    };
     CustomerService.prototype.getCustomers = function () {
         return this.http.get('/api/customers')
             .map(function (res) { return res.json(); });

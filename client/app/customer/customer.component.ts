@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CustomerService } from '../services/customer.service'
 import { FormBuilder, Validators } from '@angular/forms'
 import { Customer } from './customer';
+import { Litr } from './litr';
 
 @Component({
     moduleId: module.id,
@@ -11,6 +12,7 @@ import { Customer } from './customer';
 
 export class CustomerComponent {
 
+    litrs: Litr[];
     customers: Customer[];
     firstName: string;
     lastName: string;
@@ -22,9 +24,9 @@ export class CustomerComponent {
     email: string;
 
     constructor(private customerService: CustomerService, private fb: FormBuilder) {
-        this.customerService.getCustomers()
-            .subscribe(customers => {
-                this.customers = customers;
+        this.customerService.getLitrs()
+            .subscribe(litrs => {
+                this.litrs = litrs;
             });
     }
 
